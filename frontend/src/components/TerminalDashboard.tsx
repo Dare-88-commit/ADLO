@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
+import Link from "next/link";
 import { MacroSlider } from "./MacroSlider";
 import { RelativeValueHeatmap } from "./RelativeValueHeatmap";
 import { renderCurveChart, type CurveDatum } from "../charts/lightweight";
@@ -143,20 +144,28 @@ export function TerminalDashboard() {
             </p>
           </div>
 
-          <label className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3">
-            <span className="block font-mono text-xs uppercase tracking-[0.32em] text-slate-400">
-              Country
-            </span>
-            <select
-              className="mt-2 w-48 rounded-xl border border-white/10 bg-slate-950 px-3 py-2 font-mono text-sm text-slate-100"
-              value={country}
-              onChange={(event) => setCountry(event.target.value)}
+          <div className="flex flex-wrap items-end gap-3">
+            <Link
+              className="rounded-lg border border-white/10 bg-white/5 px-4 py-3 font-mono text-xs uppercase tracking-[0.24em] text-slate-200 transition hover:border-sky-300/60 hover:text-sky-200"
+              href="/explain"
             >
-              {countries.map((entry) => (
-                <option key={entry}>{entry}</option>
-              ))}
-            </select>
-          </label>
+              Explain Terminal
+            </Link>
+            <label className="rounded-lg border border-white/10 bg-white/5 px-4 py-3">
+              <span className="block font-mono text-xs uppercase tracking-[0.24em] text-slate-400">
+                Country
+              </span>
+              <select
+                className="mt-2 w-48 rounded-md border border-white/10 bg-slate-950 px-3 py-2 font-mono text-sm text-slate-100"
+                value={country}
+                onChange={(event) => setCountry(event.target.value)}
+              >
+                {countries.map((entry) => (
+                  <option key={entry}>{entry}</option>
+                ))}
+              </select>
+            </label>
+          </div>
         </header>
 
         <section className="grid gap-6 lg:grid-cols-[1.3fr_0.9fr]">
