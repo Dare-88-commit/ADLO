@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ADLO Terminal</title>
+    <link rel="stylesheet" href="/assets/styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <header class="top">
+        <div>
+          <p class="eyebrow">ADLO Terminal</p>
+          <h1>African Debt Liquidity Oracle</h1>
+          <p class="lede">
+            Open sovereign curve, macro distress, and stress-test dashboard for your presentation.
+          </p>
+        </div>
+        <div class="controls">
+          <label>
+            Country
+            <select id="country"></select>
+          </label>
+          <button id="refresh">Refresh</button>
+        </div>
+      </header>
+
+      <section class="grid">
+        <article class="panel wide">
+          <div class="panel-head">
+            <div>
+              <p class="kicker">Curve view</p>
+              <h2>Local vs USD Eurobond</h2>
+            </div>
+            <span id="status" class="badge">Loading…</span>
+          </div>
+          <canvas id="curve" width="1100" height="320"></canvas>
+        </article>
+
+        <article class="panel">
+          <p class="kicker">Distress engine</p>
+          <div class="big-number" id="score">--</div>
+          <div class="muted" id="label">Waiting for signal</div>
+          <div id="components" class="components"></div>
+        </article>
+
+        <article class="panel">
+          <p class="kicker">Macro shocks</p>
+          <label class="range">
+            Inflation shock
+            <input id="inflation" type="range" min="-500" max="500" step="5" value="0" />
+            <span id="inflationValue">0 bps</span>
+          </label>
+          <label class="range">
+            FX multiplier
+            <input id="fx" type="range" min="0.5" max="2" step="0.01" value="1" />
+            <span id="fxValue">1.00x</span>
+          </label>
+          <label class="range">
+            Curve shift
+            <input id="shift" type="range" min="-300" max="300" step="5" value="0" />
+            <span id="shiftValue">0 bps</span>
+          </label>
+          <button id="stress">Run stress test</button>
+          <div class="muted" id="stressOut">Stress response appears here.</div>
+        </article>
+
+        <article class="panel wide">
+          <p class="kicker">Relative value grid</p>
+          <table class="rv-table">
+            <thead>
+              <tr>
+                <th>Country / Tenor</th>
+                <th>Local</th>
+                <th>Peer avg.</th>
+                <th>Spread</th>
+              </tr>
+            </thead>
+            <tbody id="rvBody"></tbody>
+          </table>
+        </article>
+      </section>
+    </main>
+    <script src="/assets/app.js"></script>
+  </body>
+</html>
